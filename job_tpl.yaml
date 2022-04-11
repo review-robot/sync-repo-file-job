@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: Job
+metadata:
+  annotations:
+    email: 986740642@qq.com
+    owner: xieweizhi
+  labels:
+    app: infrastructure-robot-gitee
+    component: sync-repo-file-job
+  name: job-sync-repo-file-job
+  namespace: robot-gitee
+spec:
+  template:
+    metadata:
+      annotations:
+        email: 986740642@qq.com
+        owner: xieweizhi
+      labels:
+        app: infrastructure-robot-gitee
+        component: sync-repo-file-job
+    spec:
+      containers:
+        - name: sync-repo-file-job
+          image: {IMAGE}
+          args:
+            - --platform={PLATFORM}
+            - --orgRepos={ORG_REPOS}
+            - --fileNames={FILE_NAMES}
+            - --endpoint={ENDPOINT}
+        restartPolicy: Never
